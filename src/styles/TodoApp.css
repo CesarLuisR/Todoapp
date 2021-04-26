@@ -1,0 +1,19 @@
+.todo-app {
+  width: 40%;
+  margin: 32px auto;
+}
+
+header {
+  font-family: Raleway;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 42px;
+  text-align: center;
+  letter-spacing: -0.045em;
+  color: #333333;
+  user-select: none;
+}
+
+main {
+  margin-top: 58px;
+}

@@ -1,0 +1,36 @@
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.todo-item__content {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox {
+  border-radius: 4px;
+  width: 24px;
+  height: 24px;
+  margin-right: 7px;
+}
+
+.text {
+  font-family: Montserrat;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 22px;
+  color: #000000;
+}
+
+.icon-color {
+  cursor: pointer;
+  color: #BDBDBD;
+  transition: color 0.3s;
+}
+
+.icon-color:hover {
+  color: #000000;
+}

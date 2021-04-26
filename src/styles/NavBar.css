@@ -1,0 +1,28 @@
+.navbar {
+  border-bottom: 1px solid #bdbdbd;
+  margin-bottom: 18px;
+  display: flex;
+  justify-content: space-around;
+  height: 50px;
+}
+
+.nav-link {
+  width: 89px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background: #ffffff;
+  cursor: pointer;
+  font-family: Montserrat;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
+  color: #333333;
+  user-select: none;
+}
+
+.nav-link:hover {
+  border-bottom: 3px solid #2f80ed;
+}
