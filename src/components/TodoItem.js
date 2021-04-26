@@ -1,18 +1,25 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import "../styles/TodoItem.css";
+import { getTodoFilter } from "../context/actions";
+import { TodoContext } from "../context/store";
 
 const TodoItem = (props) => {
-  const [checked, setChecked] = useState(false);
+  const data = useContext(TodoContext);
+  const [checked, setChecked] = useState(props.data[props.id - 1].data.checked);
   const labelRef = useRef();
 
   const handleCheckboxClick = (e) => {
     setChecked(e.target.checked);
+    getTodoFilter(data, {
+      data: { data: props.text, checked: e.target.checked },
+      id: props.id,
+    });
   };
 
   useEffect(() => {
     if (checked) labelRef.current.style.textDecorationLine = "line-through";
     else labelRef.current.style.textDecorationLine = "none";
-  }, [checked]);
+  }, [data, checked, props]);
 
   return (
     <div className="todo-item">
@@ -23,13 +30,14 @@ const TodoItem = (props) => {
           id={props.text}
           className="checkbox"
           onClick={handleCheckboxClick}
+          defaultChecked={checked}
         />
         <label ref={labelRef} className="text" htmlFor={props.text}>
           {props.text}
         </label>
       </div>
       {props.toRemoveItem && (
-        <span class="material-icons icon-color">delete_outline</span>
+        <span className="material-icons icon-color">delete_outline</span>
       )}
     </div>
   );

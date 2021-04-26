@@ -1,13 +1,19 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import "../styles/NavBar.css";
+import { changeSection } from "../context/actions";
+import { TodoContext } from "../context/store";
 
 const NavBar = () => {
   const [focusButton, setFocusButton] = useState("All");
   const addRef = useRef();
   const activeRef = useRef();
   const completedRef = useRef();
+  const data = useContext(TodoContext);
 
-  const handleClick = (e) => setFocusButton(e.target.textContent);
+  const handleClick = (e) => {
+    setFocusButton(e.target.textContent);
+    changeSection(data.dispatch, e.target.textContent);
+  };
 
   useEffect(() => {
     let refs = [addRef, activeRef, completedRef];
