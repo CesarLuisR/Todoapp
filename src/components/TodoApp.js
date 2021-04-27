@@ -44,6 +44,7 @@ const TodoApp = () => {
     <div className="todo-app">
       <header>#todo</header>
       <main>{mainContent()}</main>
+      <footer>Created by Cesar Luis Rijo - devChallenges.io</footer>
     </div>
   );
 };

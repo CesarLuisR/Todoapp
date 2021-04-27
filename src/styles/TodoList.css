@@ -1,0 +1,33 @@
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  height: 350px;
+  overflow: auto;
+}
+
+.delete-all {
+  background: #eb5757;
+  border-radius: 4px;
+  width: 124px;
+  height: 40px;
+  border: none;
+  cursor: pointer;
+  font-family: Montserrat;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 0.3s;
+}
+
+.delete-all:hover {
+  background: #cc4e4e;
+}
+
+.deleteAll-btn-text {
+  padding-left: 5.5px;
+}

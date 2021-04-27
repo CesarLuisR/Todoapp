@@ -23,7 +23,7 @@ export const getTodoFilter = (data, todoInfo) => {
   });
 
   let sendInfo = data.state.todos.map((todo) => {
-    if (todo.id === todoIndex[0].id) return todoInfo;
+    if (todo.id === todoIndex[0]?.id) return todoInfo;
     else return todo;
   });
 
@@ -32,3 +32,19 @@ export const getTodoFilter = (data, todoInfo) => {
     payload: sendInfo,
   });
 };
+
+export const removeTodo = (data, id) => {
+  let todos = data.state.todos.filter((todo) => todo.id !== id);
+
+  data.dispatch({
+    type: GET_FILTER,
+    payload: todos,
+  });
+};
+
+export const removeAll = (dispatch, all) => {
+  dispatch({
+    type: GET_FILTER,
+    payload: all
+  })
+}

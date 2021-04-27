@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useContext, useRef } from "react";
 import "../styles/TodoList.css";
 import TodoItem from "./TodoItem";
+import { removeAll } from "../context/actions";
+import { TodoContext } from "../context/store";
 
 const TodoList = (props) => {
+  const contextData = useContext(TodoContext);
+  const todoListRef = useRef();
+
   const localData = () => {
     const stack = [];
     const ls = window.localStorage;
@@ -16,7 +21,7 @@ const TodoList = (props) => {
 
       stack.push({
         data: { data: splittedInfo[0], checked: check },
-        id: todo,
+        id: Number(splittedInfo[2]),
       });
     }
 
@@ -25,9 +30,19 @@ const TodoList = (props) => {
 
   const data = localData();
 
+  const handleRemoveClick = () => {
+    const all = [];
+
+    contextData.state.todos.forEach(
+      (todo) => !todo.data.checked && all.push(todo)
+    );
+
+    removeAll(contextData.dispatch, all);
+  };
+
   const todoListContent = () => {
     if (props.completed) {
-      return data.map(
+      const todos = data.map(
         (todo) =>
           todo.data.checked && (
             <TodoItem
@@ -39,6 +54,20 @@ const TodoList = (props) => {
               toRemoveItem
             />
           )
+      );
+
+      const deleteAllButton = (
+        <button className="delete-all" onClick={handleRemoveClick}>
+          <span className="material-icons">delete_outline</span>
+          <span className="deleteAll-btn-text">Delete all</span>
+        </button>
+      );
+
+      return (
+        <>
+          {todos}
+          {deleteAllButton}
+        </>
       );
     } else if (props.active) {
       return data.map(
@@ -66,7 +95,11 @@ const TodoList = (props) => {
     }
   };
 
-  return <div className="todo-list">{todoListContent()}</div>;
+  return (
+    <div ref={todoListRef} className="todo-list">
+      {todoListContent()}
+    </div>
+  );
 };
 
 export default TodoList;

@@ -18,7 +18,7 @@ const ContextProvider = (props) => {
 
       stack.push({
         data: { data: splittedInfo[0], checked: check },
-        id: todo,
+        id: Number(splittedInfo[2]),
       });
     }
 
@@ -36,10 +36,12 @@ const ContextProvider = (props) => {
 
   const data = { state, dispatch };
 
+  ls.clear();
+  let newId = 0;
   state.todos.forEach((element) => {
     ls.setItem(
-      `${element.id}`,
-      `${element.data.data} --- ${element.data.checked}`
+      `${++newId}`,
+      `${element.data.data} --- ${element.data.checked} --- ${newId}`
     );
   });
 
